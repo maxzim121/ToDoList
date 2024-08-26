@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		5AE629B62C7CB24800698758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B52C7CB24800698758 /* AppDelegate.swift */; };
 		5AE629B82C7CB24800698758 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B72C7CB24800698758 /* SceneDelegate.swift */; };
-		5AE629BA2C7CB24800698758 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B92C7CB24800698758 /* MainScreenViewController.swift */; };
+		5AE629BA2C7CB24800698758 /* MainScreenModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B92C7CB24800698758 /* MainScreenModuleViewController.swift */; };
 		5AE629BF2C7CB24A00698758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE629BE2C7CB24A00698758 /* Assets.xcassets */; };
 		5AE629C22C7CB24A00698758 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5AE629C12C7CB24A00698758 /* Base */; };
 		5AE629CE2C7CD72000698758 /* UIVIew+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629CD2C7CD72000698758 /* UIVIew+Extension.swift */; };
+		5AE629D82C7CE43000698758 /* MainScreenModuleIntrecator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629D72C7CE43000698758 /* MainScreenModuleIntrecator.swift */; };
+		5AE629DB2C7CEC8400698758 /* NetworkHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629DA2C7CEC8400698758 /* NetworkHelpers.swift */; };
+		5AE629DD2C7CEDCD00698758 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629DC2C7CEDCD00698758 /* NetworkClient.swift */; };
+		5AE629DF2C7CEED700698758 /* ResponceStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629DE2C7CEED700698758 /* ResponceStruct.swift */; };
+		5AE629E22C7CF19000698758 /* MainScreenModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E12C7CF19000698758 /* MainScreenModulePresenter.swift */; };
+		5AE629E42C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E32C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift */; };
+		5AE629E62C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E52C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift */; };
+		5AE629E82C7CF54400698758 /* MainScreenModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E72C7CF54400698758 /* MainScreenModuleAssembly.swift */; };
+		5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5AE629B22C7CB24800698758 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE629B52C7CB24800698758 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AE629B72C7CB24800698758 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5AE629B92C7CB24800698758 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		5AE629B92C7CB24800698758 /* MainScreenModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleViewController.swift; sourceTree = "<group>"; };
 		5AE629BE2C7CB24A00698758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AE629C12C7CB24A00698758 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5AE629C32C7CB24A00698758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AE629CD2C7CD72000698758 /* UIVIew+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Extension.swift"; sourceTree = "<group>"; };
+		5AE629D72C7CE43000698758 /* MainScreenModuleIntrecator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleIntrecator.swift; sourceTree = "<group>"; };
+		5AE629DA2C7CEC8400698758 /* NetworkHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelpers.swift; sourceTree = "<group>"; };
+		5AE629DC2C7CEDCD00698758 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		5AE629DE2C7CEED700698758 /* ResponceStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceStruct.swift; sourceTree = "<group>"; };
+		5AE629E12C7CF19000698758 /* MainScreenModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModulePresenter.swift; sourceTree = "<group>"; };
+		5AE629E32C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModulePresenterProtocol.swift; sourceTree = "<group>"; };
+		5AE629E52C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleViewControllerProtocol.swift; sourceTree = "<group>"; };
+		5AE629E72C7CF54400698758 /* MainScreenModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleAssembly.swift; sourceTree = "<group>"; };
+		5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleIntrecatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,7 @@
 		5AE629B42C7CB24800698758 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				5AE629D92C7CEC7100698758 /* Network */,
 				5AE629D12C7CDAD400698758 /* MainScreenModule */,
 				5AE629CC2C7CD6EE00698758 /* Helpers */,
 				5AE629C92C7CCDE700698758 /* CustomUI */,
@@ -86,17 +105,49 @@
 		5AE629D12C7CDAD400698758 /* MainScreenModule */ = {
 			isa = PBXGroup;
 			children = (
-				5AE629D22C7CDADD00698758 /* MainScreenView */,
+				5AE629E72C7CF54400698758 /* MainScreenModuleAssembly.swift */,
+				5AE629E02C7CF17700698758 /* MainScreenModulePresenter */,
+				5AE629D62C7CE41600698758 /* MainScreenModuleIntrecator */,
+				5AE629D22C7CDADD00698758 /* MainScreenModuleView */,
 			);
 			path = MainScreenModule;
 			sourceTree = "<group>";
 		};
-		5AE629D22C7CDADD00698758 /* MainScreenView */ = {
+		5AE629D22C7CDADD00698758 /* MainScreenModuleView */ = {
 			isa = PBXGroup;
 			children = (
-				5AE629B92C7CB24800698758 /* MainScreenViewController.swift */,
+				5AE629B92C7CB24800698758 /* MainScreenModuleViewController.swift */,
+				5AE629E52C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift */,
 			);
-			path = MainScreenView;
+			path = MainScreenModuleView;
+			sourceTree = "<group>";
+		};
+		5AE629D62C7CE41600698758 /* MainScreenModuleIntrecator */ = {
+			isa = PBXGroup;
+			children = (
+				5AE629D72C7CE43000698758 /* MainScreenModuleIntrecator.swift */,
+				5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */,
+			);
+			path = MainScreenModuleIntrecator;
+			sourceTree = "<group>";
+		};
+		5AE629D92C7CEC7100698758 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5AE629DA2C7CEC8400698758 /* NetworkHelpers.swift */,
+				5AE629DC2C7CEDCD00698758 /* NetworkClient.swift */,
+				5AE629DE2C7CEED700698758 /* ResponceStruct.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5AE629E02C7CF17700698758 /* MainScreenModulePresenter */ = {
+			isa = PBXGroup;
+			children = (
+				5AE629E12C7CF19000698758 /* MainScreenModulePresenter.swift */,
+				5AE629E32C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift */,
+			);
+			path = MainScreenModulePresenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,9 +220,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AE629BA2C7CB24800698758 /* MainScreenViewController.swift in Sources */,
+				5AE629E82C7CF54400698758 /* MainScreenModuleAssembly.swift in Sources */,
+				5AE629DB2C7CEC8400698758 /* NetworkHelpers.swift in Sources */,
+				5AE629BA2C7CB24800698758 /* MainScreenModuleViewController.swift in Sources */,
 				5AE629B62C7CB24800698758 /* AppDelegate.swift in Sources */,
+				5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */,
+				5AE629E62C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift in Sources */,
+				5AE629DF2C7CEED700698758 /* ResponceStruct.swift in Sources */,
 				5AE629CE2C7CD72000698758 /* UIVIew+Extension.swift in Sources */,
+				5AE629E42C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift in Sources */,
+				5AE629DD2C7CEDCD00698758 /* NetworkClient.swift in Sources */,
+				5AE629D82C7CE43000698758 /* MainScreenModuleIntrecator.swift in Sources */,
+				5AE629E22C7CF19000698758 /* MainScreenModulePresenter.swift in Sources */,
 				5AE629B82C7CB24800698758 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

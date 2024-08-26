@@ -1,7 +1,13 @@
 import UIKit
 
-final class MainScreenViewController: UIViewController {
-    
+final class MainScreenModuleViewController: UIViewController {
+
+    // MARK: - Private variables
+
+    private var presenter: MainScreenModulePresenterProtocol
+
+    // MARK: - UI components
+
     private lazy var toDoLabel: UILabel = {
         var toDoLabel = UILabel()
         toDoLabel.text = "ToDo"
@@ -9,7 +15,7 @@ final class MainScreenViewController: UIViewController {
         toDoLabel.font = .systemFont(ofSize: 25, weight: .light)
         return toDoLabel
     }()
-    
+
     private lazy var addButton: UIButton = {
         var addButton = UIButton()
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -20,7 +26,7 @@ final class MainScreenViewController: UIViewController {
         addButton.dropShadow()
         return addButton
     }()
-    
+
     private lazy var bottomView: UIView = {
         var bottomView = UIView()
         bottomView.backgroundColor = .white
@@ -29,16 +35,29 @@ final class MainScreenViewController: UIViewController {
         return bottomView
     }()
 
+    // MARK: - Initialization
+
+    init(presenter: MainScreenModulePresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+        presenter.viewDidLoad()
         view.backgroundColor = .white
     }
 
-}
+    // MARK: - Private methods
 
-private extension MainScreenViewController {
-    func setupConstraints() {
+    private func setupConstraints() {
         [bottomView, addButton, toDoLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -58,5 +77,11 @@ private extension MainScreenViewController {
             toDoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             toDoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
+    }
+}
+
+extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol {
+    func showData(_ data: [Todo]) {
+        print(data)
     }
 }

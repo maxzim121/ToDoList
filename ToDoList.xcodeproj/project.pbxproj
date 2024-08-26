@@ -22,6 +22,8 @@
 		5AE629E62C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E52C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift */; };
 		5AE629E82C7CF54400698758 /* MainScreenModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629E72C7CF54400698758 /* MainScreenModuleAssembly.swift */; };
 		5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */; };
+		5AE629EF2C7D2BA700698758 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629EE2C7D2BA700698758 /* Resources.swift */; };
+		5AE629F12C7D2E6F00698758 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629F02C7D2E6F00698758 /* UIFont+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		5AE629E52C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleViewControllerProtocol.swift; sourceTree = "<group>"; };
 		5AE629E72C7CF54400698758 /* MainScreenModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleAssembly.swift; sourceTree = "<group>"; };
 		5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleIntrecatorProtocol.swift; sourceTree = "<group>"; };
+		5AE629EE2C7D2BA700698758 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		5AE629F02C7D2E6F00698758 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,13 +78,13 @@
 		5AE629B42C7CB24800698758 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				5AE629ED2C7D2B2400698758 /* Resources */,
 				5AE629D92C7CEC7100698758 /* Network */,
 				5AE629D12C7CDAD400698758 /* MainScreenModule */,
 				5AE629CC2C7CD6EE00698758 /* Helpers */,
 				5AE629C92C7CCDE700698758 /* CustomUI */,
 				5AE629B52C7CB24800698758 /* AppDelegate.swift */,
 				5AE629B72C7CB24800698758 /* SceneDelegate.swift */,
-				5AE629BE2C7CB24A00698758 /* Assets.xcassets */,
 				5AE629C02C7CB24A00698758 /* LaunchScreen.storyboard */,
 				5AE629C32C7CB24A00698758 /* Info.plist */,
 			);
@@ -98,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				5AE629CD2C7CD72000698758 /* UIVIew+Extension.swift */,
+				5AE629F02C7D2E6F00698758 /* UIFont+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -148,6 +153,15 @@
 				5AE629E32C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift */,
 			);
 			path = MainScreenModulePresenter;
+			sourceTree = "<group>";
+		};
+		5AE629ED2C7D2B2400698758 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5AE629BE2C7CB24A00698758 /* Assets.xcassets */,
+				5AE629EE2C7D2BA700698758 /* Resources.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,12 +237,14 @@
 				5AE629E82C7CF54400698758 /* MainScreenModuleAssembly.swift in Sources */,
 				5AE629DB2C7CEC8400698758 /* NetworkHelpers.swift in Sources */,
 				5AE629BA2C7CB24800698758 /* MainScreenModuleViewController.swift in Sources */,
+				5AE629F12C7D2E6F00698758 /* UIFont+Extension.swift in Sources */,
 				5AE629B62C7CB24800698758 /* AppDelegate.swift in Sources */,
 				5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */,
 				5AE629E62C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift in Sources */,
 				5AE629DF2C7CEED700698758 /* ResponceStruct.swift in Sources */,
 				5AE629CE2C7CD72000698758 /* UIVIew+Extension.swift in Sources */,
 				5AE629E42C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift in Sources */,
+				5AE629EF2C7D2BA700698758 /* Resources.swift in Sources */,
 				5AE629DD2C7CEDCD00698758 /* NetworkClient.swift in Sources */,
 				5AE629D82C7CE43000698758 /* MainScreenModuleIntrecator.swift in Sources */,
 				5AE629E22C7CF19000698758 /* MainScreenModulePresenter.swift in Sources */,

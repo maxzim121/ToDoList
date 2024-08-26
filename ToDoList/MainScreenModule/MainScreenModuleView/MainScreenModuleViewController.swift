@@ -10,9 +10,9 @@ final class MainScreenModuleViewController: UIViewController {
 
     private lazy var toDoLabel: UILabel = {
         var toDoLabel = UILabel()
-        toDoLabel.text = "ToDo"
+        toDoLabel.text = Resources.MainScreenModule.todoText
         toDoLabel.textColor = .black
-        toDoLabel.font = .systemFont(ofSize: 25, weight: .light)
+        toDoLabel.font = .mainScreenTitileFont
         return toDoLabel
     }()
 

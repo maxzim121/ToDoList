@@ -8,6 +8,13 @@ final class MainScreenModulePresenter {
         self.intrecator = intrecator
     }
     
+    private func checkIfFirstLaunch() {
+        if UserDefaults.standard.value(forKey: Resources.MainScreenModule.firstLaunchKey) == nil {
+            intrecator.fetchTodos()
+            UserDefaults.standard.setValue(0, forKey: Resources.MainScreenModule.firstLaunchKey)
+        }
+    }
+    
 }
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
@@ -16,6 +23,6 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     }
     
     func viewDidLoad() {
-        intrecator.fetchTodos()
+        checkIfFirstLaunch()
     }
 }

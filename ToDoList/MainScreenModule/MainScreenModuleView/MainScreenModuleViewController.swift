@@ -7,6 +7,14 @@ final class MainScreenModuleViewController: UIViewController {
     private var presenter: MainScreenModulePresenterProtocol
 
     // MARK: - UI components
+    
+    private lazy var toDoListTableView: UITableView = {
+        var toDoListTableView = UITableView()
+        toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: "ToDoListTableViewCell")
+        toDoListTableView.estimatedRowHeight = 100
+        toDoListTableView.rowHeight = UITableView.automaticDimension
+        return toDoListTableView
+    }()
 
     private lazy var toDoLabel: UILabel = {
         var toDoLabel = UILabel()
@@ -52,13 +60,16 @@ final class MainScreenModuleViewController: UIViewController {
         super.viewDidLoad()
         setupConstraints()
         presenter.viewDidLoad()
+        toDoListTableView.delegate = self
+        toDoListTableView.dataSource = self
+        reloadData()
         view.backgroundColor = .white
     }
 
     // MARK: - Private methods
 
     private func setupConstraints() {
-        [bottomView, addButton, toDoLabel].forEach {
+        [toDoListTableView, bottomView, addButton, toDoLabel].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -75,13 +86,37 @@ final class MainScreenModuleViewController: UIViewController {
             addButton.heightAnchor.constraint(equalToConstant: 50),
             
             toDoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            toDoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            toDoLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            toDoListTableView.topAnchor.constraint(equalTo: toDoLabel.bottomAnchor),
+            toDoListTableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
+            toDoListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toDoListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
 
 extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol {
-    func showData(_ data: [Todo]) {
-        print(data)
+    func reloadData() {
+        toDoListTableView.reloadData()
+    }
+}
+
+extension MainScreenModuleViewController: UITableViewDelegate {
+    
+}
+
+extension MainScreenModuleViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let toDos = presenter.tableViewReloading()
+        return toDos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let toDos = presenter.tableViewReloading()
+        guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+        let toDo = toDos[indexPath.row]
+        cell.configureUI(name: toDo.name!, status: toDo.status)
+        return cell
     }
 }

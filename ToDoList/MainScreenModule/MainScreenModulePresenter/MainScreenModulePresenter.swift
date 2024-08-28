@@ -3,6 +3,7 @@ final class MainScreenModulePresenter {
     
     weak var view: MainScreenModuleViewControllerProtocol?
     var intrecator: MainScreenModuleIntrecatorProtocol
+    var toDos: [ToDo] = []
     
     init(intrecator: MainScreenModuleIntrecatorProtocol) {
         self.intrecator = intrecator
@@ -12,17 +13,24 @@ final class MainScreenModulePresenter {
         if UserDefaults.standard.value(forKey: Resources.MainScreenModule.firstLaunchKey) == nil {
             intrecator.fetchTodos()
             UserDefaults.standard.setValue(0, forKey: Resources.MainScreenModule.firstLaunchKey)
+        } else {
+            intrecatorGotData()
         }
     }
     
 }
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
-    func dataCollected(_ data: [Todo]) {
-        view?.showData(data)
-    }
-    
     func viewDidLoad() {
         checkIfFirstLaunch()
+    }
+    
+    func tableViewReloading() -> [ToDo] {
+        return toDos
+    }
+    
+    func intrecatorGotData() {
+        toDos = intrecator.getAllToDos()
+        view?.reloadData()
     }
 }

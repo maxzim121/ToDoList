@@ -4,6 +4,9 @@ final class MainScreenModulePresenter {
     weak var view: MainScreenModuleViewControllerProtocol?
     var intrecator: MainScreenModuleIntrecatorProtocol
     var toDos: [ToDo] = []
+    var completedToDos: [ToDo] = []
+    var uncompletedToDos: [ToDo] = []
+    
     
     init(intrecator: MainScreenModuleIntrecatorProtocol) {
         self.intrecator = intrecator
@@ -21,16 +24,34 @@ final class MainScreenModulePresenter {
 }
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
+
     func viewDidLoad() {
         checkIfFirstLaunch()
     }
     
-    func tableViewReloading() -> [ToDo] {
-        return toDos
+    func getUncompletedToDos() -> [ToDo] {
+        uncompletedToDos = toDos.filter() { $0.status == false }
+        return uncompletedToDos
+    }
+    
+    func updateCompletedToDos(toDo: ToDo) {
+        if let index = toDos.firstIndex(of: toDo) {
+            toDos[index].status = true
+        }
+        view?.reloadData()
+    }
+    
+    func getCompletedToDos() -> [ToDo] {
+        completedToDos = toDos.filter() { $0.status == true }
+        return completedToDos
     }
     
     func intrecatorGotData() {
         toDos = intrecator.getAllToDos()
         view?.reloadData()
+    }
+    
+    func toDoCompleted(toDo: ToDo) {
+        intrecator.completeToDo(toDo: toDo)
     }
 }

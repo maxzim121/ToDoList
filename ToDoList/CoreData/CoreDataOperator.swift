@@ -53,8 +53,9 @@ final class CoreDataOperator {
         }
     }
     
-    func updateItem(item: ToDo) {
+    func completeToDo(item: ToDo) {
         do {
+            item.status = true
             try context.save()
         } catch {
             // TODO: Добавить обработку ошибки

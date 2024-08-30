@@ -11,6 +11,7 @@ final class MainScreenModuleViewController: UIViewController {
     private lazy var toDoListTableView: UITableView = {
         var toDoListTableView = UITableView()
         toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: "ToDoListTableViewCell")
+        toDoListTableView.separatorStyle = .none
         toDoListTableView.estimatedRowHeight = 100
         toDoListTableView.rowHeight = UITableView.automaticDimension
         return toDoListTableView
@@ -102,20 +103,36 @@ extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol
     }
 }
 
+extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProtocol {
+    func doneButtonTapped(toDo: ToDo, indexPath: IndexPath) {
+        presenter.toDoCompleted(toDo: toDo)
+        view.isUserInteractionEnabled = false
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: {_ in
+            self.toDoListTableView.deleteRows(at: [indexPath], with: .left)})
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {_ in
+            self.presenter.intrecatorGotData()
+            self.view.isUserInteractionEnabled = true
+        })
+    }
+}
+
 extension MainScreenModuleViewController: UITableViewDelegate {
     
 }
 
 extension MainScreenModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let toDos = presenter.tableViewReloading()
+        let toDos = presenter.getUncompletedToDos()
         return toDos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let toDos = presenter.tableViewReloading()
+        let toDos = presenter.getUncompletedToDos()
         guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+        cell.view = self
         let toDo = toDos[indexPath.row]
+        cell.toDo = toDo
+        cell.indexPath = indexPath
         cell.configureUI(name: toDo.name!, status: toDo.status)
         return cell
     }

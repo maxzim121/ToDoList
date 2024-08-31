@@ -1,5 +1,5 @@
 import Foundation
-protocol CreateToDoScreenModulePresenterProtocol: AnyObject {
+protocol ToDoScreenModulePresenterProtocol: AnyObject {
     func tryToCreate()
     func nameEdited(name: String)
     
@@ -10,4 +10,7 @@ protocol CreateToDoScreenModulePresenterProtocol: AnyObject {
     func priorityEdited(priority: String)
     
     func switchToMainScreen()
+    
+    func viewDidLoad()
+    func deleteToDo()
 }

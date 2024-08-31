@@ -1,4 +1,4 @@
 import UIKit
 protocol MainScreenModuleRouterProtocol: AnyObject {
-    func switchToCreateToDoScreenModule()
+    func switchToToDoScreenModule(toDo: ToDo?)
 }

@@ -1,23 +1,25 @@
 import Foundation
-final class CreateToDoScreenModulePresenter {
+final class ToDoScreenModulePresenter {
     
-    weak var view: CreateToDoScreenViewControllerProtocol?
-    var intrecator: CreateToDoScreenModuleIntrecatorProtocol
-    var router: CreateToDoScreenModuleRouterProtocol
+    weak var view: ToDoScreenViewControllerProtocol?
+    var intrecator: ToDoScreenModuleIntrecatorProtocol
+    var router: ToDoScreenModuleRouterProtocol
+    
+    var toDo: ToDo?
     
     private var nameText: String?
     private var descriptionText: String?
     private var priorityText: String?
     private var date: Date?
     
-    init(intrecator: CreateToDoScreenModuleIntrecatorProtocol, router: CreateToDoScreenModuleRouterProtocol) {
+    init(intrecator: ToDoScreenModuleIntrecatorProtocol, router: ToDoScreenModuleRouterProtocol) {
         self.intrecator = intrecator
         self.router = router
     }
     
 }
 
-extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtocol {
+extension ToDoScreenModulePresenter: ToDoScreenModulePresenterProtocol {
     func tryToCreate() {
         guard let nameText = nameText,
               let descriptionText = descriptionText,
@@ -35,7 +37,11 @@ extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtoc
             view?.showAlert()
             return
         }
-        intrecator.createNewToDo(name: nameText, description: descriptionText, date: date, priority: priorityText)
+        if let toDo = toDo {
+            intrecator.editToDo(name: nameText, description: descriptionText, date: date, priority: priorityText, toDo: toDo)
+        } else {
+            intrecator.createNewToDo(name: nameText, description: descriptionText, date: date, priority: priorityText)
+        }
         router.switchToMainScreen()
     }
     
@@ -57,5 +63,17 @@ extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtoc
     
     func priorityEdited(priority: String) {
         priorityText = priority
+    }
+    
+    func viewDidLoad() {
+        if let toDo = toDo {
+            view?.setupWithToDo(toDo: toDo)
+        }
+    }
+    
+    func deleteToDo() {
+        guard let toDo = toDo else { return }
+        intrecator.deleteToDo(toDo: toDo)
+        router.switchToMainScreen()
     }
 }

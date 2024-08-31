@@ -47,6 +47,19 @@ final class CoreDataOperator {
         }
     }
     
+    func updateItem(name: String, description: String, date: Date, priority: String, item: ToDo) {
+        item.name = name
+        item.descriptioin = description
+        item.date = date
+        item.priority = priority
+        do {
+            try context.save()
+        }
+        catch {
+            // TODO: Добавить обработку ошибки
+        }
+    }
+    
     func deleteItem(item: ToDo) {
         context.delete(item)
         do {

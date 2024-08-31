@@ -10,10 +10,10 @@ final class MainScreenModuleViewController: UIViewController {
     
     private lazy var toDoListTableView: UITableView = {
         var toDoListTableView = UITableView()
+        toDoListTableView.showsVerticalScrollIndicator = false
         toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: "ToDoListTableViewCell")
         toDoListTableView.separatorStyle = .none
         toDoListTableView.estimatedRowHeight = 100
-        toDoListTableView.rowHeight = UITableView.automaticDimension
         return toDoListTableView
     }()
 
@@ -128,7 +128,9 @@ extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProt
 }
 
 extension MainScreenModuleViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("GHBDTN")
+    }
 }
 
 extension MainScreenModuleViewController: UITableViewDataSource {
@@ -144,7 +146,7 @@ extension MainScreenModuleViewController: UITableViewDataSource {
         let toDo = toDos[indexPath.row]
         cell.toDo = toDo
         cell.indexPath = indexPath
-        cell.configureUI(name: toDo.name!, status: toDo.status)
+        cell.configureUI(name: toDo.name, description: toDo.descriptioin, date: toDo.date, priority: toDo.priority)
         return cell
     }
 }

@@ -3,7 +3,21 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     weak var view: MainScreenModuleViewControllerCellProtocol?
     var toDo: ToDo?
-    var indexPath = IndexPath()
+    var indexPath: IndexPath?
+    
+    private var stackView: UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private var descriptionLabel: UILabel = {
+        var descriptionLabel = UILabel()
+        descriptionLabel.font = .systemFont(ofSize: 14)
+        descriptionLabel.textColor = .lightGray
+        descriptionLabel.numberOfLines = 2
+        return descriptionLabel
+    }()
     
     private var dateBackgroundView: UIView = {
         var dateBackgroundView = UIView()
@@ -24,7 +38,6 @@ final class ToDoListTableViewCell: UITableViewCell {
     private lazy var statusButton: UIImageView = {
         var statusButton = UIImageView()
         var tapGesture = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
-        statusButton.tintColor = .red
         statusButton.contentMode = .scaleAspectFit
         statusButton.addGestureRecognizer(tapGesture)
         statusButton.isUserInteractionEnabled = true
@@ -33,11 +46,22 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         var dateLabel = UILabel()
-        dateLabel.text = "SEPTEMBERE"
         dateLabel.font = .systemFont(ofSize: 14)
         dateLabel.backgroundColor = .clear
         return dateLabel
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        toDoNameLabel.text = nil
+        descriptionLabel.text = nil
+        dateLabel.text = nil
+        descriptionLabel.isHidden = true
+        dateBackgroundView.isHidden = true
+        toDo = nil
+        indexPath = nil
+        stackView.spacing = 0
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,7 +75,7 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     
     private func setupConstraints() {
-        [toDoNameLabel, statusButton, dateBackgroundView, dateLabel, ].forEach {
+        [statusButton, dateBackgroundView, stackView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -62,20 +86,12 @@ final class ToDoListTableViewCell: UITableViewCell {
             statusButton.widthAnchor.constraint(equalToConstant: 30),
             statusButton.heightAnchor.constraint(equalToConstant: 30),
             
-            toDoNameLabel.leadingAnchor.constraint(equalTo: statusButton.trailingAnchor, constant: 20),
-            toDoNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
-            toDoNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            
-            dateBackgroundView.leadingAnchor.constraint(equalTo: toDoNameLabel.leadingAnchor),
-            dateBackgroundView.topAnchor.constraint(equalTo: toDoNameLabel.bottomAnchor,constant: 10),
-            dateBackgroundView.heightAnchor.constraint(equalToConstant: 30),
-            dateBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            
-            dateLabel.centerXAnchor.constraint(equalTo: dateBackgroundView.centerXAnchor),
-            dateLabel.centerYAnchor.constraint(equalTo: dateBackgroundView.centerYAnchor),
-            
-            dateBackgroundView.widthAnchor.constraint(equalTo: dateLabel.widthAnchor, constant: 20)
+            stackView.leadingAnchor.constraint(equalTo: statusButton.trailingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
+        stackView.addArrangedSubview(toDoNameLabel)
     }
     
     @objc func doneButtonTapped() {
@@ -85,16 +101,69 @@ final class ToDoListTableViewCell: UITableViewCell {
             options: .transitionCrossDissolve,
             animations: { [self] in 
                 self.statusButton.image = UIImage(systemName: "checkmark")
-                guard let toDo = self.toDo else { return }
-                view?.doneButtonTapped(toDo: toDo, indexPath: self.indexPath)
+                guard let toDo = self.toDo,
+                      let indexPath = self.indexPath else { return }
+                view?.doneButtonTapped(toDo: toDo, indexPath: indexPath)
                 })
     }
     
     
     
-    func configureUI(name: String, status: Bool) {
-        toDoNameLabel.text = name
+    func configureUI(name: String?, description: String?, date: Date?, priority: String?) {
+        var descriptionIsNil: Bool = true
+        
+        if let name = name {
+            toDoNameLabel.text = name
+        }
+        if let description = description {
+            descriptionIsNil = false
+            configureDescriptionLabel(description: description)
+        } else {
+        }
+        if let date = date {
+            configureDateLabel(date: date, descriptionIsNil: descriptionIsNil)
+        } else {
+        }
+        if let priority = priority {
+            switch priority {
+            case "Low":
+                statusButton.tintColor = .blue.withAlphaComponent(0.5)
+            case "Mid":
+                statusButton.tintColor = .yellow.withAlphaComponent(0.8)
+            case "High":
+                statusButton.tintColor = .red.withAlphaComponent(0.5)
+            default: break
+            }
+        } else {
+            statusButton.tintColor = .lightGray
+        }
         statusButton.image = UIImage(systemName: "circle")
+    }
+    
+    func configureDescriptionLabel(description: String) {
+        stackView.spacing = 10
+        stackView.addArrangedSubview(descriptionLabel)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.text = description
+        descriptionLabel.isHidden = false
+    }
+    
+    func configureDateLabel(date: Date, descriptionIsNil: Bool) {
+        stackView.spacing = 10
+        [dateLabel].forEach {
+            stackView.addArrangedSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        dateBackgroundView.isHidden = false
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        dateLabel.text = formatter.string(from: date)
+        NSLayoutConstraint.activate([
+            dateBackgroundView.widthAnchor.constraint(equalToConstant: 93),
+            dateBackgroundView.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor),
+            dateBackgroundView.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -10),
+            dateBackgroundView.heightAnchor.constraint(equalToConstant: 30)
+        ])
     }
     
 }

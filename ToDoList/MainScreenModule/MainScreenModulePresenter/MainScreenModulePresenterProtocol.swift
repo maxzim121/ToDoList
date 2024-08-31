@@ -5,6 +5,6 @@ protocol MainScreenModulePresenterProtocol: AnyObject {
     func getCompletedToDos() -> [ToDo]
     func updateCompletedToDos(toDo: ToDo)
     func intrecatorGotData()
-    func toDoCompleted(toDo: ToDo)
+    func updateToDoStatus(toDo: ToDo, status: Bool)
     func addButtonTapped(toDo: ToDo?)
 }

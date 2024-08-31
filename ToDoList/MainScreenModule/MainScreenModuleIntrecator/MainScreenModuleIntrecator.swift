@@ -30,11 +30,11 @@ extension MainScreenModuleIntrecator: MainScreenModuleIntrecatorProtocol {
         // TODO: Реализовать создание ToDo
     }
     
-    func completeToDo(toDo: ToDo) {
-        let backGroundContext = coreDataOperator.newBackgroundContext()
-        backGroundContext.perform {
-            self.coreDataOperator.completeToDo(item: toDo)
-        }
+    func updateToDoStatus(toDo: ToDo, status: Bool) {
+            let backGroundContext = coreDataOperator.newBackgroundContext()
+            backGroundContext.perform {
+                self.coreDataOperator.completeToDo(item: toDo, status: status)
+            }
     }
     
     func fetchTodos() {

@@ -27,7 +27,6 @@ final class MainScreenModulePresenter {
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     
-    
     func addButtonTapped(toDo: ToDo?) {
         router.switchToToDoScreenModule(toDo: toDo)
     }
@@ -38,7 +37,6 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     }
     
     func getUncompletedToDos() -> [ToDo] {
-        uncompletedToDos = toDos.filter() { $0.status == false }
         return uncompletedToDos
     }
     
@@ -50,16 +48,28 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     }
     
     func getCompletedToDos() -> [ToDo] {
-        completedToDos = toDos.filter() { $0.status == true }
         return completedToDos
     }
     
     func intrecatorGotData() {
         toDos = intrecator.getAllToDos()
+        completedToDos = toDos.filter() { $0.status == true }
+        uncompletedToDos = toDos.filter() { $0.status == false }
         view?.reloadData()
     }
     
-    func toDoCompleted(toDo: ToDo) {
-        intrecator.completeToDo(toDo: toDo)
+    func updateToDoStatus(toDo: ToDo, status: Bool) {
+        if status {
+            if let index = completedToDos.firstIndex(where: { $0.id == toDo.id }) {
+                completedToDos[index].status = !status
+                uncompletedToDos.append(completedToDos.remove(at: index))
+            }
+        } else {
+            if let index = uncompletedToDos.firstIndex(where: { $0.id == toDo.id }) {
+                uncompletedToDos[index].status = !status
+                completedToDos.append(uncompletedToDos.remove(at: index))
+            }
+        }
+        intrecator.updateToDoStatus(toDo: toDo, status: status)
     }
 }

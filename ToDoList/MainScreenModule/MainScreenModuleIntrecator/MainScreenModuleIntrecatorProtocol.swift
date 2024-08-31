@@ -3,5 +3,5 @@ protocol MainScreenModuleIntrecatorProtocol: AnyObject {
     func fetchTodos()
     func createToDo()
     func getAllToDos() -> [ToDo]
-    func completeToDo(toDo: ToDo)
+    func updateToDoStatus(toDo: ToDo, status: Bool)
 }

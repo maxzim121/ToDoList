@@ -54,6 +54,7 @@ final class ToDoListTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         toDoNameLabel.text = nil
+        toDoNameLabel.attributedText = nil
         descriptionLabel.text = nil
         dateLabel.text = nil
         descriptionLabel.isHidden = true
@@ -109,7 +110,7 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     
     
-    func configureUI(name: String?, description: String?, date: Date?, priority: String?) {
+    func configureUI(name: String?, description: String?, date: Date?, priority: String?, status: Bool?) {
         var descriptionIsNil: Bool = true
         
         if let name = name {
@@ -137,7 +138,14 @@ final class ToDoListTableViewCell: UITableViewCell {
         } else {
             statusButton.tintColor = .lightGray
         }
-        statusButton.image = UIImage(systemName: "circle")
+        if let status = status {
+            guard let name = name else { return }
+            if status == true {
+                statusButton.image = UIImage(systemName: "checkmark")
+            } else {
+                statusButton.image = UIImage(systemName: "circle")
+            }
+        }
     }
     
     func configureDescriptionLabel(description: String) {

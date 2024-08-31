@@ -12,6 +12,7 @@ final class MainScreenModuleViewController: UIViewController {
         var toDoListTableView = UITableView()
         toDoListTableView.showsVerticalScrollIndicator = false
         toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: "ToDoListTableViewCell")
+        toDoListTableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
         toDoListTableView.separatorStyle = .none
         toDoListTableView.estimatedRowHeight = 100
         return toDoListTableView
@@ -115,14 +116,24 @@ extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol
 
 extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProtocol {
     func doneButtonTapped(toDo: ToDo, indexPath: IndexPath) {
-        presenter.toDoCompleted(toDo: toDo)
-        view.isUserInteractionEnabled = false
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: {_ in
-            self.toDoListTableView.deleteRows(at: [indexPath], with: .left)})
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {_ in
-            self.presenter.intrecatorGotData()
-            self.view.isUserInteractionEnabled = true
-        })
+        presenter.updateToDoStatus(toDo: toDo, status: toDo.status)
+        if indexPath.section == 0 {
+            toDoListTableView.performBatchUpdates({
+                toDoListTableView.deleteRows(at: [indexPath], with: .left)
+                let newIndexPath = IndexPath(row: presenter.getCompletedToDos().count - 1, section: 1)
+                toDoListTableView.insertRows(at: [newIndexPath], with: .automatic)
+            }, completion: { _ in
+                self.toDoListTableView.reloadData()
+            })
+        } else {
+            toDoListTableView.performBatchUpdates({
+                toDoListTableView.deleteRows(at: [indexPath], with: .left)
+                let newIndexPath = IndexPath(row: presenter.getUncompletedToDos().count - 1, section: 0)
+                toDoListTableView.insertRows(at: [newIndexPath], with: .automatic)
+            }, completion: { _ in
+                self.toDoListTableView.reloadData()
+            })
+        }
     }
 }
 
@@ -132,22 +143,67 @@ extension MainScreenModuleViewController: UITableViewDelegate {
         let toDo = cell?.toDo
         presenter.addButtonTapped(toDo: toDo)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? HeaderView else { return UIView()}
+        switch section {
+        case 0:
+            let count = presenter.getUncompletedToDos().count
+            if count == 0 {
+                return UIView()
+            }
+            header.configureLabel(text: "Невыполненные (\(count))")
+        case 1:
+            let count = presenter.getCompletedToDos().count
+            if count == 0 {
+                return UIView()
+            }
+            header.configureLabel(text: "Выполненные (\(count))")
+        default: return UIView()
+        }
+        return header
+    }
 }
 
 extension MainScreenModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let toDos = presenter.getUncompletedToDos()
-        return toDos.count
+        switch section {
+        case 0:
+            let toDos = presenter.getUncompletedToDos()
+            return toDos.count
+        case 1:
+            let toDos = presenter.getCompletedToDos()
+            return toDos.count
+        default: return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let toDos = presenter.getUncompletedToDos()
-        guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
-        cell.view = self
-        let toDo = toDos[indexPath.row]
-        cell.toDo = toDo
-        cell.indexPath = indexPath
-        cell.configureUI(name: toDo.name, description: toDo.descriptioin, date: toDo.date, priority: toDo.priority)
-        return cell
+        switch indexPath.section {
+        case 0:
+            let toDos = presenter.getUncompletedToDos()
+            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+            cell.view = self
+            let toDo = toDos[indexPath.row]
+            cell.toDo = toDo
+            cell.indexPath = indexPath
+            cell.configureUI(name: toDo.name, description: toDo.descriptioin, date: toDo.date, priority: toDo.priority, status: toDo.status)
+            return cell
+        case 1:
+            let toDos = presenter.getCompletedToDos()
+            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+            cell.view = self
+            let toDo = toDos[indexPath.row]
+            cell.toDo = toDo
+            cell.indexPath = indexPath
+            cell.configureUI(name: toDo.name, description: nil, date: nil, priority: toDo.priority, status: toDo.status)
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }

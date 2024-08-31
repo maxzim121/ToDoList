@@ -32,11 +32,14 @@ final class CoreDataOperator {
         }
     }
     
-    func createItem() {
+    func createItem(name: String, description: String, date: Date, priority: String) {
         let newItem = ToDo(context: context)
         newItem.id = UUID()
-        newItem.name = "Полить цветы"
-        
+        newItem.name = name
+        newItem.status = false
+        newItem.descriptioin = description
+        newItem.date = date
+        newItem.priority = priority
         do {
             try context.save()
         } catch {

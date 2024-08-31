@@ -32,6 +32,7 @@ final class MainScreenModuleViewController: UIViewController {
         addButton.backgroundColor = .white
         addButton.layer.masksToBounds = false
         addButton.layer.cornerRadius = 25
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         addButton.dropShadow()
         return addButton
     }()
@@ -59,6 +60,7 @@ final class MainScreenModuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         setupConstraints()
         presenter.viewDidLoad()
         toDoListTableView.delegate = self
@@ -66,12 +68,17 @@ final class MainScreenModuleViewController: UIViewController {
         reloadData()
         view.backgroundColor = .white
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("HELLOOOOOO")
+        presenter.viewDidLoad()
+    }
 
     // MARK: - Private methods
 
     private func setupConstraints() {
         [toDoListTableView, bottomView, addButton, toDoLabel].forEach {
-            view.addSubview($0)
+            self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -94,6 +101,10 @@ final class MainScreenModuleViewController: UIViewController {
             toDoListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             toDoListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    @objc private func addButtonTapped() {
+        presenter.addButtonTapped()
     }
 }
 

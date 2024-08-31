@@ -11,14 +11,14 @@
 		5A22A8872C7DFC3700E5520D /* CoreDataOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22A8862C7DFC3700E5520D /* CoreDataOperator.swift */; };
 		5A22A8892C7E0FB200E5520D /* ToDoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22A8882C7E0FB200E5520D /* ToDoListTableViewCell.swift */; };
 		5A94E5C82C7F679A0017457E /* MainScreenModuleViewControllerCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A94E5C72C7F679A0017457E /* MainScreenModuleViewControllerCellProtocol.swift */; };
-		5ADCDCAB2C83393600995311 /* CreateToDoScreenModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAA2C83393600995311 /* CreateToDoScreenModulePresenter.swift */; };
-		5ADCDCAE2C83396F00995311 /* CreateToDoScreenModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAD2C83396F00995311 /* CreateToDoScreenModulePresenterProtocol.swift */; };
-		5ADCDCB02C8344C100995311 /* CreateToDoScreenViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAF2C8344C100995311 /* CreateToDoScreenViewControllerProtocol.swift */; };
-		5ADCDCB22C8349E000995311 /* CreateToDoScreenModuleIntrecator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB12C8349E000995311 /* CreateToDoScreenModuleIntrecator.swift */; };
-		5ADCDCB42C8349EF00995311 /* CreateToDoScreenModuleIntrecatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB32C8349EF00995311 /* CreateToDoScreenModuleIntrecatorProtocol.swift */; };
-		5ADCDCB62C834A8F00995311 /* CreateToDoScreenModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB52C834A8F00995311 /* CreateToDoScreenModuleAssembly.swift */; };
-		5ADCDCB82C834F6100995311 /* CreateToDoScreenModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB72C834F6100995311 /* CreateToDoScreenModuleRouter.swift */; };
-		5ADCDCBA2C834F6E00995311 /* CreateToDoScreenModuleRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB92C834F6E00995311 /* CreateToDoScreenModuleRouterProtocol.swift */; };
+		5ADCDCAB2C83393600995311 /* ToDoScreenModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAA2C83393600995311 /* ToDoScreenModulePresenter.swift */; };
+		5ADCDCAE2C83396F00995311 /* ToDoScreenModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAD2C83396F00995311 /* ToDoScreenModulePresenterProtocol.swift */; };
+		5ADCDCB02C8344C100995311 /* ToDoScreenViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCAF2C8344C100995311 /* ToDoScreenViewControllerProtocol.swift */; };
+		5ADCDCB22C8349E000995311 /* ToDoScreenModuleIntrecator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB12C8349E000995311 /* ToDoScreenModuleIntrecator.swift */; };
+		5ADCDCB42C8349EF00995311 /* ToDoScreenModuleIntrecatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB32C8349EF00995311 /* ToDoScreenModuleIntrecatorProtocol.swift */; };
+		5ADCDCB62C834A8F00995311 /* ToDoScreenModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB52C834A8F00995311 /* ToDoScreenModuleAssembly.swift */; };
+		5ADCDCB82C834F6100995311 /* ToDoScreenModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB72C834F6100995311 /* ToDoScreenModuleRouter.swift */; };
+		5ADCDCBA2C834F6E00995311 /* ToDoScreenModuleRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADCDCB92C834F6E00995311 /* ToDoScreenModuleRouterProtocol.swift */; };
 		5AE629B62C7CB24800698758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B52C7CB24800698758 /* AppDelegate.swift */; };
 		5AE629B82C7CB24800698758 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B72C7CB24800698758 /* SceneDelegate.swift */; };
 		5AE629BA2C7CB24800698758 /* MainScreenModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629B92C7CB24800698758 /* MainScreenModuleViewController.swift */; };
@@ -36,7 +36,7 @@
 		5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */; };
 		5AE629EF2C7D2BA700698758 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629EE2C7D2BA700698758 /* Resources.swift */; };
 		5AE629F12C7D2E6F00698758 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE629F02C7D2E6F00698758 /* UIFont+Extension.swift */; };
-		5AED52F72C82077200C04CAA /* CreateToDoScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED52F62C82077200C04CAA /* CreateToDoScreenViewController.swift */; };
+		5AED52F72C82077200C04CAA /* ToDoScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED52F62C82077200C04CAA /* ToDoScreenViewController.swift */; };
 		5AED52FA2C82083600C04CAA /* MainScreenModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED52F92C82083600C04CAA /* MainScreenModuleRouter.swift */; };
 		5AED52FC2C82084F00C04CAA /* MainScreenModuleRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED52FB2C82084F00C04CAA /* MainScreenModuleRouterProtocol.swift */; };
 		5AED53032C8306D100C04CAA /* PriorityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED53022C8306D100C04CAA /* PriorityCollectionViewCell.swift */; };
@@ -47,14 +47,14 @@
 		5A22A8862C7DFC3700E5520D /* CoreDataOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataOperator.swift; sourceTree = "<group>"; };
 		5A22A8882C7E0FB200E5520D /* ToDoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewCell.swift; sourceTree = "<group>"; };
 		5A94E5C72C7F679A0017457E /* MainScreenModuleViewControllerCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleViewControllerCellProtocol.swift; sourceTree = "<group>"; };
-		5ADCDCAA2C83393600995311 /* CreateToDoScreenModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModulePresenter.swift; sourceTree = "<group>"; };
-		5ADCDCAD2C83396F00995311 /* CreateToDoScreenModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModulePresenterProtocol.swift; sourceTree = "<group>"; };
-		5ADCDCAF2C8344C100995311 /* CreateToDoScreenViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenViewControllerProtocol.swift; sourceTree = "<group>"; };
-		5ADCDCB12C8349E000995311 /* CreateToDoScreenModuleIntrecator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModuleIntrecator.swift; sourceTree = "<group>"; };
-		5ADCDCB32C8349EF00995311 /* CreateToDoScreenModuleIntrecatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModuleIntrecatorProtocol.swift; sourceTree = "<group>"; };
-		5ADCDCB52C834A8F00995311 /* CreateToDoScreenModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModuleAssembly.swift; sourceTree = "<group>"; };
-		5ADCDCB72C834F6100995311 /* CreateToDoScreenModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModuleRouter.swift; sourceTree = "<group>"; };
-		5ADCDCB92C834F6E00995311 /* CreateToDoScreenModuleRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenModuleRouterProtocol.swift; sourceTree = "<group>"; };
+		5ADCDCAA2C83393600995311 /* ToDoScreenModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModulePresenter.swift; sourceTree = "<group>"; };
+		5ADCDCAD2C83396F00995311 /* ToDoScreenModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModulePresenterProtocol.swift; sourceTree = "<group>"; };
+		5ADCDCAF2C8344C100995311 /* ToDoScreenViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenViewControllerProtocol.swift; sourceTree = "<group>"; };
+		5ADCDCB12C8349E000995311 /* ToDoScreenModuleIntrecator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModuleIntrecator.swift; sourceTree = "<group>"; };
+		5ADCDCB32C8349EF00995311 /* ToDoScreenModuleIntrecatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModuleIntrecatorProtocol.swift; sourceTree = "<group>"; };
+		5ADCDCB52C834A8F00995311 /* ToDoScreenModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModuleAssembly.swift; sourceTree = "<group>"; };
+		5ADCDCB72C834F6100995311 /* ToDoScreenModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModuleRouter.swift; sourceTree = "<group>"; };
+		5ADCDCB92C834F6E00995311 /* ToDoScreenModuleRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenModuleRouterProtocol.swift; sourceTree = "<group>"; };
 		5AE629B22C7CB24800698758 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE629B52C7CB24800698758 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AE629B72C7CB24800698758 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		5AE629EB2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleIntrecatorProtocol.swift; sourceTree = "<group>"; };
 		5AE629EE2C7D2BA700698758 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		5AE629F02C7D2E6F00698758 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
-		5AED52F62C82077200C04CAA /* CreateToDoScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoScreenViewController.swift; sourceTree = "<group>"; };
+		5AED52F62C82077200C04CAA /* ToDoScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoScreenViewController.swift; sourceTree = "<group>"; };
 		5AED52F92C82083600C04CAA /* MainScreenModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleRouter.swift; sourceTree = "<group>"; };
 		5AED52FB2C82084F00C04CAA /* MainScreenModuleRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModuleRouterProtocol.swift; sourceTree = "<group>"; };
 		5AED53022C8306D100C04CAA /* PriorityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				5AE629ED2C7D2B2400698758 /* Resources */,
 				5AE629D92C7CEC7100698758 /* Network */,
 				5AE629D12C7CDAD400698758 /* MainScreenModule */,
-				5AED52F42C82074300C04CAA /* CreateToDoScreenModule */,
+				5AED52F42C82074300C04CAA /* ToDoScreenModule */,
 				5AE629CC2C7CD6EE00698758 /* Helpers */,
 				5AE629C92C7CCDE700698758 /* CustomUI */,
 				5AE629B52C7CB24800698758 /* AppDelegate.swift */,
@@ -210,26 +210,26 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5AED52F42C82074300C04CAA /* CreateToDoScreenModule */ = {
+		5AED52F42C82074300C04CAA /* ToDoScreenModule */ = {
 			isa = PBXGroup;
 			children = (
-				5AED53012C821A7800C04CAA /* CreateToDoScreenModuleRouter */,
-				5AED53002C821A6300C04CAA /* CreateToDoScreenModuleIntrecator */,
-				5AED52FF2C821A5300C04CAA /* CreateToDoScreenModulePresenter */,
-				5AED52F52C82075A00C04CAA /* CreateToDoScreenModuleView */,
-				5ADCDCB52C834A8F00995311 /* CreateToDoScreenModuleAssembly.swift */,
+				5AED53012C821A7800C04CAA /* ToDoScreenModuleRouter */,
+				5AED53002C821A6300C04CAA /* ToDoScreenModuleIntrecator */,
+				5AED52FF2C821A5300C04CAA /* ToDoScreenModulePresenter */,
+				5AED52F52C82075A00C04CAA /* ToDoScreenModuleView */,
+				5ADCDCB52C834A8F00995311 /* ToDoScreenModuleAssembly.swift */,
 			);
-			path = CreateToDoScreenModule;
+			path = ToDoScreenModule;
 			sourceTree = "<group>";
 		};
-		5AED52F52C82075A00C04CAA /* CreateToDoScreenModuleView */ = {
+		5AED52F52C82075A00C04CAA /* ToDoScreenModuleView */ = {
 			isa = PBXGroup;
 			children = (
-				5AED52F62C82077200C04CAA /* CreateToDoScreenViewController.swift */,
+				5AED52F62C82077200C04CAA /* ToDoScreenViewController.swift */,
 				5AED53022C8306D100C04CAA /* PriorityCollectionViewCell.swift */,
-				5ADCDCAF2C8344C100995311 /* CreateToDoScreenViewControllerProtocol.swift */,
+				5ADCDCAF2C8344C100995311 /* ToDoScreenViewControllerProtocol.swift */,
 			);
-			path = CreateToDoScreenModuleView;
+			path = ToDoScreenModuleView;
 			sourceTree = "<group>";
 		};
 		5AED52F82C82082A00C04CAA /* MainScreenModuleRouter */ = {
@@ -241,31 +241,31 @@
 			path = MainScreenModuleRouter;
 			sourceTree = "<group>";
 		};
-		5AED52FF2C821A5300C04CAA /* CreateToDoScreenModulePresenter */ = {
+		5AED52FF2C821A5300C04CAA /* ToDoScreenModulePresenter */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCDCAA2C83393600995311 /* CreateToDoScreenModulePresenter.swift */,
-				5ADCDCAD2C83396F00995311 /* CreateToDoScreenModulePresenterProtocol.swift */,
+				5ADCDCAA2C83393600995311 /* ToDoScreenModulePresenter.swift */,
+				5ADCDCAD2C83396F00995311 /* ToDoScreenModulePresenterProtocol.swift */,
 			);
-			path = CreateToDoScreenModulePresenter;
+			path = ToDoScreenModulePresenter;
 			sourceTree = "<group>";
 		};
-		5AED53002C821A6300C04CAA /* CreateToDoScreenModuleIntrecator */ = {
+		5AED53002C821A6300C04CAA /* ToDoScreenModuleIntrecator */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCDCB12C8349E000995311 /* CreateToDoScreenModuleIntrecator.swift */,
-				5ADCDCB32C8349EF00995311 /* CreateToDoScreenModuleIntrecatorProtocol.swift */,
+				5ADCDCB12C8349E000995311 /* ToDoScreenModuleIntrecator.swift */,
+				5ADCDCB32C8349EF00995311 /* ToDoScreenModuleIntrecatorProtocol.swift */,
 			);
-			path = CreateToDoScreenModuleIntrecator;
+			path = ToDoScreenModuleIntrecator;
 			sourceTree = "<group>";
 		};
-		5AED53012C821A7800C04CAA /* CreateToDoScreenModuleRouter */ = {
+		5AED53012C821A7800C04CAA /* ToDoScreenModuleRouter */ = {
 			isa = PBXGroup;
 			children = (
-				5ADCDCB72C834F6100995311 /* CreateToDoScreenModuleRouter.swift */,
-				5ADCDCB92C834F6E00995311 /* CreateToDoScreenModuleRouterProtocol.swift */,
+				5ADCDCB72C834F6100995311 /* ToDoScreenModuleRouter.swift */,
+				5ADCDCB92C834F6E00995311 /* ToDoScreenModuleRouterProtocol.swift */,
 			);
-			path = CreateToDoScreenModuleRouter;
+			path = ToDoScreenModuleRouter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,19 +338,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ADCDCB22C8349E000995311 /* CreateToDoScreenModuleIntrecator.swift in Sources */,
-				5ADCDCAE2C83396F00995311 /* CreateToDoScreenModulePresenterProtocol.swift in Sources */,
-				5AED52F72C82077200C04CAA /* CreateToDoScreenViewController.swift in Sources */,
+				5ADCDCB22C8349E000995311 /* ToDoScreenModuleIntrecator.swift in Sources */,
+				5ADCDCAE2C83396F00995311 /* ToDoScreenModulePresenterProtocol.swift in Sources */,
+				5AED52F72C82077200C04CAA /* ToDoScreenViewController.swift in Sources */,
 				5A22A8842C7DE48100E5520D /* ToDoList.xcdatamodeld in Sources */,
 				5A22A8892C7E0FB200E5520D /* ToDoListTableViewCell.swift in Sources */,
 				5AE629E82C7CF54400698758 /* MainScreenModuleAssembly.swift in Sources */,
 				5AE629DB2C7CEC8400698758 /* NetworkHelpers.swift in Sources */,
 				5AE629BA2C7CB24800698758 /* MainScreenModuleViewController.swift in Sources */,
-				5ADCDCBA2C834F6E00995311 /* CreateToDoScreenModuleRouterProtocol.swift in Sources */,
+				5ADCDCBA2C834F6E00995311 /* ToDoScreenModuleRouterProtocol.swift in Sources */,
 				5AE629F12C7D2E6F00698758 /* UIFont+Extension.swift in Sources */,
 				5AED52FC2C82084F00C04CAA /* MainScreenModuleRouterProtocol.swift in Sources */,
 				5AE629B62C7CB24800698758 /* AppDelegate.swift in Sources */,
-				5ADCDCB82C834F6100995311 /* CreateToDoScreenModuleRouter.swift in Sources */,
+				5ADCDCB82C834F6100995311 /* ToDoScreenModuleRouter.swift in Sources */,
 				5A22A8872C7DFC3700E5520D /* CoreDataOperator.swift in Sources */,
 				5AE629EC2C7CFA8600698758 /* MainScreenModuleIntrecatorProtocol.swift in Sources */,
 				5AE629E62C7CF31B00698758 /* MainScreenModuleViewControllerProtocol.swift in Sources */,
@@ -359,15 +359,15 @@
 				5AED53032C8306D100C04CAA /* PriorityCollectionViewCell.swift in Sources */,
 				5AE629E42C7CF1C700698758 /* MainScreenModulePresenterProtocol.swift in Sources */,
 				5AE629EF2C7D2BA700698758 /* Resources.swift in Sources */,
-				5ADCDCB42C8349EF00995311 /* CreateToDoScreenModuleIntrecatorProtocol.swift in Sources */,
+				5ADCDCB42C8349EF00995311 /* ToDoScreenModuleIntrecatorProtocol.swift in Sources */,
 				5AE629DD2C7CEDCD00698758 /* NetworkClient.swift in Sources */,
 				5AED52FA2C82083600C04CAA /* MainScreenModuleRouter.swift in Sources */,
-				5ADCDCAB2C83393600995311 /* CreateToDoScreenModulePresenter.swift in Sources */,
-				5ADCDCB62C834A8F00995311 /* CreateToDoScreenModuleAssembly.swift in Sources */,
+				5ADCDCAB2C83393600995311 /* ToDoScreenModulePresenter.swift in Sources */,
+				5ADCDCB62C834A8F00995311 /* ToDoScreenModuleAssembly.swift in Sources */,
 				5A94E5C82C7F679A0017457E /* MainScreenModuleViewControllerCellProtocol.swift in Sources */,
 				5AE629D82C7CE43000698758 /* MainScreenModuleIntrecator.swift in Sources */,
 				5AE629E22C7CF19000698758 /* MainScreenModulePresenter.swift in Sources */,
-				5ADCDCB02C8344C100995311 /* CreateToDoScreenViewControllerProtocol.swift in Sources */,
+				5ADCDCB02C8344C100995311 /* ToDoScreenViewControllerProtocol.swift in Sources */,
 				5AE629B82C7CB24800698758 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,8 +1,8 @@
 import UIKit
-final class CreateToDoScreenModuleRouter {
+final class ToDoScreenModuleRouter {
     weak var navigationController: UINavigationController?
 }
-extension CreateToDoScreenModuleRouter: CreateToDoScreenModuleRouterProtocol {
+extension ToDoScreenModuleRouter: ToDoScreenModuleRouterProtocol {
     func switchToMainScreen() {
         navigationController?.popViewController(animated: true)
     }

@@ -1,7 +1,7 @@
 import UIKit
-final class CreateToDoScreenViewController: UIViewController {
+final class ToDoScreenViewController: UIViewController {
     
-    private var presenter: CreateToDoScreenModulePresenterProtocol
+    private var presenter: ToDoScreenModulePresenterProtocol
     
     private var priorityNames = ["Low", "Mid", "High"]
     
@@ -87,7 +87,7 @@ final class CreateToDoScreenViewController: UIViewController {
         return priorityCollectionView
     }()
     
-    init(presenter: CreateToDoScreenModulePresenterProtocol, priorityNames: [String] = ["Low", "Mid", "High"]) {
+    init(presenter: ToDoScreenModulePresenterProtocol, priorityNames: [String] = ["Low", "Mid", "High"]) {
         self.presenter = presenter
         self.priorityNames = priorityNames
         super.init(nibName: nil, bundle: nil)
@@ -164,7 +164,7 @@ final class CreateToDoScreenViewController: UIViewController {
     
 }
 
-extension CreateToDoScreenViewController: UITextViewDelegate {
+extension ToDoScreenViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         switch textView {
         case nameTextView:
@@ -199,7 +199,7 @@ extension CreateToDoScreenViewController: UITextViewDelegate {
     }
 }
 
-extension CreateToDoScreenViewController: UICollectionViewDataSource {
+extension ToDoScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -221,7 +221,7 @@ extension CreateToDoScreenViewController: UICollectionViewDataSource {
     }
 }
 
-extension CreateToDoScreenViewController: UICollectionViewDelegateFlowLayout {
+extension ToDoScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
@@ -232,7 +232,7 @@ extension CreateToDoScreenViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CreateToDoScreenViewController: UICollectionViewDelegate {
+extension ToDoScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let cell = collectionView.cellForItem(at: indexPath) as? PriorityCollectionViewCell
@@ -251,7 +251,7 @@ extension CreateToDoScreenViewController: UICollectionViewDelegate {
     }
 }
 
-extension CreateToDoScreenViewController: CreateToDoScreenViewControllerProtocol {
+extension ToDoScreenViewController: ToDoScreenViewControllerProtocol {
     func setupWithToDo(toDo: ToDo) {
         createButton.setTitle("Сохранить", for: .normal)
         nameTextView.text = toDo.name

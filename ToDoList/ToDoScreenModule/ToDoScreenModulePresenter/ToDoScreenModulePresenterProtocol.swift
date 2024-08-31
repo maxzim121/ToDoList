@@ -1,5 +1,5 @@
 import Foundation
-protocol CreateToDoScreenModulePresenterProtocol: AnyObject {
+protocol ToDoScreenModulePresenterProtocol: AnyObject {
     func tryToCreate()
     func nameEdited(name: String)
     

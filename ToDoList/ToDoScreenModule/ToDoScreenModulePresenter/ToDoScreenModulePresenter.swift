@@ -1,9 +1,9 @@
 import Foundation
-final class CreateToDoScreenModulePresenter {
+final class ToDoScreenModulePresenter {
     
-    weak var view: CreateToDoScreenViewControllerProtocol?
-    var intrecator: CreateToDoScreenModuleIntrecatorProtocol
-    var router: CreateToDoScreenModuleRouterProtocol
+    weak var view: ToDoScreenViewControllerProtocol?
+    var intrecator: ToDoScreenModuleIntrecatorProtocol
+    var router: ToDoScreenModuleRouterProtocol
     
     var toDo: ToDo?
     
@@ -12,14 +12,14 @@ final class CreateToDoScreenModulePresenter {
     private var priorityText: String?
     private var date: Date?
     
-    init(intrecator: CreateToDoScreenModuleIntrecatorProtocol, router: CreateToDoScreenModuleRouterProtocol) {
+    init(intrecator: ToDoScreenModuleIntrecatorProtocol, router: ToDoScreenModuleRouterProtocol) {
         self.intrecator = intrecator
         self.router = router
     }
     
 }
 
-extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtocol {
+extension ToDoScreenModulePresenter: ToDoScreenModulePresenterProtocol {
     func tryToCreate() {
         guard let nameText = nameText,
               let descriptionText = descriptionText,

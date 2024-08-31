@@ -29,7 +29,7 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     
     
     func addButtonTapped(toDo: ToDo?) {
-        router.switchToCreateToDoScreenModule(toDo: toDo)
+        router.switchToToDoScreenModule(toDo: toDo)
     }
     
 

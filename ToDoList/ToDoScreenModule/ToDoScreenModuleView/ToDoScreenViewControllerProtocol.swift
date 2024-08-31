@@ -1,5 +1,5 @@
 import Foundation
-protocol CreateToDoScreenViewControllerProtocol: AnyObject {
+protocol ToDoScreenViewControllerProtocol: AnyObject {
     func showAlert()
     func setupWithToDo(toDo: ToDo)
 }

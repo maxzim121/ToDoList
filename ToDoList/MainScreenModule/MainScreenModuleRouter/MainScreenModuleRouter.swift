@@ -5,10 +5,10 @@ final class MainScreenModuleRouter {
 }
 
 extension MainScreenModuleRouter: MainScreenModuleRouterProtocol {
-    func switchToCreateToDoScreenModule() {
+    func switchToCreateToDoScreenModule(toDo: ToDo?) {
         guard let navigationController = navigationController else { return }
         let createToDoScreenModuleAssembly = CreateToDoScreenModuleAssembly()
-        let createView = createToDoScreenModuleAssembly.createScreenModuleAssembly(navigationController: navigationController)
+        let createView = createToDoScreenModuleAssembly.createScreenModuleAssembly(navigationController: navigationController, toDo: toDo)
         navigationController.pushViewController(createView, animated: true)
     }
 }

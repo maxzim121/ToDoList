@@ -10,4 +10,7 @@ protocol CreateToDoScreenModulePresenterProtocol: AnyObject {
     func priorityEdited(priority: String)
     
     func switchToMainScreen()
+    
+    func viewDidLoad()
+    func deleteToDo()
 }

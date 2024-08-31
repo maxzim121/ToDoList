@@ -28,9 +28,8 @@ final class MainScreenModulePresenter {
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     
     
-    func addButtonTapped() {
-        print("почему")
-        router.switchToCreateToDoScreenModule()
+    func addButtonTapped(toDo: ToDo?) {
+        router.switchToCreateToDoScreenModule(toDo: toDo)
     }
     
 

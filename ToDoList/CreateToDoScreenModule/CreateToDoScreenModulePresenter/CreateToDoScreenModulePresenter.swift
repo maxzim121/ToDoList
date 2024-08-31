@@ -5,6 +5,8 @@ final class CreateToDoScreenModulePresenter {
     var intrecator: CreateToDoScreenModuleIntrecatorProtocol
     var router: CreateToDoScreenModuleRouterProtocol
     
+    var toDo: ToDo?
+    
     private var nameText: String?
     private var descriptionText: String?
     private var priorityText: String?
@@ -35,7 +37,11 @@ extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtoc
             view?.showAlert()
             return
         }
-        intrecator.createNewToDo(name: nameText, description: descriptionText, date: date, priority: priorityText)
+        if let toDo = toDo {
+            intrecator.editToDo(name: nameText, description: descriptionText, date: date, priority: priorityText, toDo: toDo)
+        } else {
+            intrecator.createNewToDo(name: nameText, description: descriptionText, date: date, priority: priorityText)
+        }
         router.switchToMainScreen()
     }
     
@@ -57,5 +63,17 @@ extension CreateToDoScreenModulePresenter: CreateToDoScreenModulePresenterProtoc
     
     func priorityEdited(priority: String) {
         priorityText = priority
+    }
+    
+    func viewDidLoad() {
+        if let toDo = toDo {
+            view?.setupWithToDo(toDo: toDo)
+        }
+    }
+    
+    func deleteToDo() {
+        guard let toDo = toDo else { return }
+        intrecator.deleteToDo(toDo: toDo)
+        router.switchToMainScreen()
     }
 }

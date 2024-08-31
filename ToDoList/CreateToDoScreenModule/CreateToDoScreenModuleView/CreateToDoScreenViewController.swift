@@ -13,6 +13,15 @@ final class CreateToDoScreenViewController: UIViewController {
         return createButton
     }()
     
+    private lazy var deleteButton: UIButton = {
+        var deleteButton = UIButton()
+        deleteButton.setTitle("Удалить", for: .normal)
+        deleteButton.setTitleColor(UIColor.systemRed, for: .normal)
+        deleteButton.isHidden = true
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        return deleteButton
+    }()
+    
     private lazy var backButton: UIButton = {
         var backButton = UIButton()
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -91,11 +100,12 @@ final class CreateToDoScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        presenter.viewDidLoad()
         setupConstraints()
     }
     
     private func setupConstraints() {
-        [backButton, createButton, nameTextView, descriptionTextView, datePicker, priorityCollectionView, placeholderNameLabel, placeholderDescriptionLabel].forEach {
+        [backButton, createButton, nameTextView, descriptionTextView, datePicker, priorityCollectionView, placeholderNameLabel, placeholderDescriptionLabel, deleteButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -129,7 +139,10 @@ final class CreateToDoScreenViewController: UIViewController {
             priorityCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             priorityCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             priorityCollectionView.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
-            priorityCollectionView.heightAnchor.constraint(equalToConstant: 50)
+            priorityCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            
+            deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
     
@@ -143,6 +156,10 @@ final class CreateToDoScreenViewController: UIViewController {
     
     @objc private func createButtonTapped() {
         presenter.tryToCreate()
+    }
+    
+    @objc private func deleteButtonTapped() {
+        presenter.deleteToDo()
     }
     
 }
@@ -188,7 +205,6 @@ extension CreateToDoScreenViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("Включилосю")
         guard let cell = priorityCollectionView.dequeueReusableCell(withReuseIdentifier: "priotiryCell", for: indexPath) as? PriorityCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -236,6 +252,32 @@ extension CreateToDoScreenViewController: UICollectionViewDelegate {
 }
 
 extension CreateToDoScreenViewController: CreateToDoScreenViewControllerProtocol {
+    func setupWithToDo(toDo: ToDo) {
+        createButton.setTitle("Сохранить", for: .normal)
+        nameTextView.text = toDo.name
+        presenter.nameEdited(name: nameTextView.text)
+        if let description = toDo.descriptioin {
+            descriptionTextView.text = description
+            presenter.descriptionEdited(description: description)
+        }
+        if let date = toDo.date {
+            datePicker.date = date
+            presenter.dateEdited(date: date)
+        }
+        if let priority = toDo.priority {
+            switch priority {
+            case "Low": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+            case "Mid": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 1, section: 0))
+            case "High": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 2, section: 0))
+            default: break
+            }
+            presenter.priorityEdited(priority: priority)
+        }
+        deleteButton.isHidden = false
+        placeholderNameLabel.isHidden = !nameTextView.text.isEmpty
+        placeholderDescriptionLabel.isHidden = !descriptionTextView.text.isEmpty
+    }
+    
     func showAlert() {
         let alertController = UIAlertController(
             title: "Не получилось создать задачу",

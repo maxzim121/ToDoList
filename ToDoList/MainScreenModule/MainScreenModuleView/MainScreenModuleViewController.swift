@@ -70,7 +70,6 @@ final class MainScreenModuleViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("HELLOOOOOO")
         presenter.viewDidLoad()
     }
 
@@ -104,7 +103,7 @@ final class MainScreenModuleViewController: UIViewController {
     }
     
     @objc private func addButtonTapped() {
-        presenter.addButtonTapped()
+        presenter.addButtonTapped(toDo: nil)
     }
 }
 
@@ -129,7 +128,9 @@ extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProt
 
 extension MainScreenModuleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("GHBDTN")
+        let cell = tableView.cellForRow(at: indexPath) as? ToDoListTableViewCell
+        let toDo = cell?.toDo
+        presenter.addButtonTapped(toDo: toDo)
     }
 }
 

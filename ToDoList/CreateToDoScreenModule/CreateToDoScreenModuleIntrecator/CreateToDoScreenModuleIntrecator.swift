@@ -9,4 +9,16 @@ extension CreateToDoScreenModuleIntrecator: CreateToDoScreenModuleIntrecatorProt
             self.coreDataOperator.createItem(name: name, description: description, date: date, priority: priority)
         }
     }
+    
+    func editToDo(name: String, description: String, date: Date, priority: String, toDo: ToDo) {
+        DispatchQueue.global().sync {
+            self.coreDataOperator.updateItem(name: name, description: description, date: date, priority: priority, item: toDo)
+        }
+    }
+    
+    func deleteToDo(toDo: ToDo) {
+        DispatchQueue.global().sync {
+            self.coreDataOperator.deleteItem(item: toDo)
+        }
+    }
 }

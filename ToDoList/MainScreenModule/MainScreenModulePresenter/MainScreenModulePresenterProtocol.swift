@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 protocol MainScreenModulePresenterProtocol: AnyObject {
     func viewDidLoad()
     func getUncompletedToDos() -> [ToDo]
@@ -6,4 +6,5 @@ protocol MainScreenModulePresenterProtocol: AnyObject {
     func updateCompletedToDos(toDo: ToDo)
     func intrecatorGotData()
     func toDoCompleted(toDo: ToDo)
+    func addButtonTapped()
 }

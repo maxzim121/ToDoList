@@ -1,11 +1,14 @@
 import UIKit
 final class MainScreenModuleAssembly {
-    func mainScreenModuleAssembly() -> UIViewController {
+    func mainScreenModuleAssembly(navigationController: UINavigationController) -> UIViewController {
         let intrecator = MainScreenModuleIntrecator()
-        let presenter = MainScreenModulePresenter(intrecator: intrecator)
+        let router = MainScreenModuleRouter()
+        let presenter = MainScreenModulePresenter(intrecator: intrecator, router: router)
         let viewController = MainScreenModuleViewController(presenter: presenter)
         presenter.view = viewController
         intrecator.presenter = presenter
+        router.presenter = presenter
+        router.navigationController = navigationController
         return viewController
     }
 }

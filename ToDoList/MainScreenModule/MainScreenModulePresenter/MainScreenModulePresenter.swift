@@ -3,12 +3,14 @@ final class MainScreenModulePresenter {
     
     weak var view: MainScreenModuleViewControllerProtocol?
     var intrecator: MainScreenModuleIntrecatorProtocol
+    var router: MainScreenModuleRouterProtocol
     var toDos: [ToDo] = []
     var completedToDos: [ToDo] = []
     var uncompletedToDos: [ToDo] = []
     
     
-    init(intrecator: MainScreenModuleIntrecatorProtocol) {
+    init(intrecator: MainScreenModuleIntrecatorProtocol, router: MainScreenModuleRouterProtocol) {
+        self.router = router
         self.intrecator = intrecator
     }
     
@@ -24,6 +26,13 @@ final class MainScreenModulePresenter {
 }
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
+    
+    
+    func addButtonTapped() {
+        print("почему")
+        router.switchToCreateToDoScreenModule()
+    }
+    
 
     func viewDidLoad() {
         checkIfFirstLaunch()

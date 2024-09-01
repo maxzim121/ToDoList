@@ -1,10 +1,17 @@
 import UIKit
 final class MainScreenModuleIntrecator {
     
+    // MARK: - Public properties
+    
     weak var presenter: MainScreenModulePresenterProtocol?
-    let networkClient = NetworkClient.shared
-    let coreDataOperator = CoreDataOperator.shared
-    var fetchedTodos: [Todo]?
+    
+    // MARK: - Private properties
+    
+    private let networkClient = NetworkClient.shared
+    private let coreDataOperator = CoreDataOperator.shared
+    private var fetchedTodos: [Todo]?
+    
+    // MARK: - Public methods
     
     func createFetchedToDos() {
         let backGroundContext = coreDataOperator.newBackgroundContext()
@@ -20,14 +27,12 @@ final class MainScreenModuleIntrecator {
     
 }
 
+    // MARK: - MainScreenModuleIntrecatorProtocol
+
 extension MainScreenModuleIntrecator: MainScreenModuleIntrecatorProtocol {
     
     func getAllToDos() -> [ToDo] {
         return coreDataOperator.getAllItems()
-    }
-    
-    func createToDo() {
-        // TODO: Реализовать создание ToDo
     }
     
     func updateToDoStatus(toDo: ToDo, status: Bool) {

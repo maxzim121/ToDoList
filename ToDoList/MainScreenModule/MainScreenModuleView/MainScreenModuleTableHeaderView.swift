@@ -1,11 +1,15 @@
 import UIKit
 class HeaderView: UITableViewHeaderFooterView {
     
+    // MARK: - Private properties
+    
     private lazy var titleLabel: UILabel = {
         var titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 20, weight: .medium)
+        titleLabel.font = .headerFont
         return titleLabel
     }()
+    
+    // MARK: - Initializers
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -17,6 +21,8 @@ class HeaderView: UITableViewHeaderFooterView {
         setupView()
     }
     
+    // MARK: - Private methods
+    
     private func setupView() {
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +32,8 @@ class HeaderView: UITableViewHeaderFooterView {
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
+    
+    // MARK: - Public methods
     
     func configureLabel(text: String) {
         titleLabel.text = text

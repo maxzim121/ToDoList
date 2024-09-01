@@ -1,18 +1,26 @@
 import UIKit
 final class MainScreenModulePresenter {
     
+    // MARK: - Public properties
+    
     weak var view: MainScreenModuleViewControllerProtocol?
     var intrecator: MainScreenModuleIntrecatorProtocol
     var router: MainScreenModuleRouterProtocol
-    var toDos: [ToDo] = []
-    var completedToDos: [ToDo] = []
-    var uncompletedToDos: [ToDo] = []
     
+    // MARK: - Private properties
+    
+    private var toDos: [ToDo] = []
+    private var completedToDos: [ToDo] = []
+    private var uncompletedToDos: [ToDo] = []
+    
+    // MARK: - Initializers
     
     init(intrecator: MainScreenModuleIntrecatorProtocol, router: MainScreenModuleRouterProtocol) {
         self.router = router
         self.intrecator = intrecator
     }
+    
+    // MARK: - Private methods
     
     private func checkIfFirstLaunch() {
         if UserDefaults.standard.value(forKey: Resources.MainScreenModule.firstLaunchKey) == nil {
@@ -24,6 +32,8 @@ final class MainScreenModulePresenter {
     }
     
 }
+
+    // MARK: - MainScreenModulePresenterProtocol
 
 extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     

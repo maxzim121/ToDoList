@@ -1,13 +1,16 @@
 import UIKit
 final class ToDoScreenViewController: UIViewController {
     
-    private var presenter: ToDoScreenModulePresenterProtocol
+    // MARK: - Private properties
     
-    private var priorityNames = ["Low", "Mid", "High"]
+    private var presenter: ToDoScreenModulePresenterProtocol
+    private var priorityNames = [toDoScreenResources.lowText, toDoScreenResources.midText, toDoScreenResources.highText]
+    
+    // MARK: - UI components
     
     private lazy var createButton: UIButton = {
         var createButton = UIButton()
-        createButton.setTitle("Создать", for: .normal)
+        createButton.setTitle(toDoScreenResources.createText, for: .normal)
         createButton.setTitleColor(UIColor.systemBlue, for: .normal)
         createButton.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
         return createButton
@@ -15,7 +18,7 @@ final class ToDoScreenViewController: UIViewController {
     
     private lazy var deleteButton: UIButton = {
         var deleteButton = UIButton()
-        deleteButton.setTitle("Удалить", for: .normal)
+        deleteButton.setTitle(toDoScreenResources.deleteText, for: .normal)
         deleteButton.setTitleColor(UIColor.systemRed, for: .normal)
         deleteButton.isHidden = true
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
@@ -24,14 +27,14 @@ final class ToDoScreenViewController: UIViewController {
     
     private lazy var backButton: UIButton = {
         var backButton = UIButton()
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        backButton.setImage(UIImage.chevronLeftImage, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return backButton
     }()
     
     private lazy var nameTextView: UITextView = {
         var nameTextView = UITextView()
-        nameTextView.font = .systemFont(ofSize: 24, weight: .medium)
+        nameTextView.font = .nameTextFont
         nameTextView.delegate = self
         nameTextView.isScrollEnabled = false
         nameTextView.isEditable = true
@@ -40,15 +43,15 @@ final class ToDoScreenViewController: UIViewController {
     
     private lazy var placeholderNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Добавьте задачу..."
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.text = toDoScreenResources.addToDo
+        label.font = .nameTextFont
         label.textColor = .gray
         return label
     }()
     
     private lazy var descriptionTextView: UITextView = {
         var detailsTextField = UITextView()
-        detailsTextField.font = .systemFont(ofSize: 15, weight: .regular)
+        detailsTextField.font = .detailsFont
         detailsTextField.delegate = self
         detailsTextField.isScrollEnabled = false
         detailsTextField.isEditable = true
@@ -57,8 +60,8 @@ final class ToDoScreenViewController: UIViewController {
     
     private lazy var placeholderDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Добавьте описание..."
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = toDoScreenResources.addDescription
+        label.font = .detailsFont
         label.textColor = .gray
         return label
     }()
@@ -80,22 +83,25 @@ final class ToDoScreenViewController: UIViewController {
     private lazy var priorityCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         var priorityCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        priorityCollectionView.register(PriorityCollectionViewCell.self, forCellWithReuseIdentifier: "priotiryCell")
+        priorityCollectionView.register(PriorityCollectionViewCell.self, forCellWithReuseIdentifier: toDoScreenResources.priorityCellReuseIdentifierText)
         priorityCollectionView.allowsMultipleSelection = false
         priorityCollectionView.delegate = self
         priorityCollectionView.dataSource = self
         return priorityCollectionView
     }()
     
-    init(presenter: ToDoScreenModulePresenterProtocol, priorityNames: [String] = ["Low", "Mid", "High"]) {
+    // MARK: - Initializers
+    
+    init(presenter: ToDoScreenModulePresenterProtocol) {
         self.presenter = presenter
-        self.priorityNames = priorityNames
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Resources.fatalErrorText)
     }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +109,8 @@ final class ToDoScreenViewController: UIViewController {
         presenter.viewDidLoad()
         setupConstraints()
     }
+    
+    // MARK: - Private methods
     
     private func setupConstraints() {
         [backButton, createButton, nameTextView, descriptionTextView, datePicker, priorityCollectionView, placeholderNameLabel, placeholderDescriptionLabel, deleteButton].forEach {
@@ -146,6 +154,8 @@ final class ToDoScreenViewController: UIViewController {
         ])
     }
     
+    // MARK: - Objc methods
+    
     @objc private func backButtonTapped() {
         presenter.switchToMainScreen()
     }
@@ -163,6 +173,8 @@ final class ToDoScreenViewController: UIViewController {
     }
     
 }
+
+    // MARK: - UITextViewDelegate
 
 extension ToDoScreenViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
@@ -199,27 +211,31 @@ extension ToDoScreenViewController: UITextViewDelegate {
     }
 }
 
+    // MARK: - UICollectionViewDataSource
+
 extension ToDoScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = priorityCollectionView.dequeueReusableCell(withReuseIdentifier: "priotiryCell", for: indexPath) as? PriorityCollectionViewCell else {
+        guard let cell = priorityCollectionView.dequeueReusableCell(withReuseIdentifier: toDoScreenResources.priorityCellReuseIdentifierText, for: indexPath) as? PriorityCollectionViewCell else {
             return UICollectionViewCell()
         }
         switch priorityNames[indexPath.row] {
-        case "Low":
+        case toDoScreenResources.lowText:
             cell.lowCell()
-        case "Mid":
+        case toDoScreenResources.midText:
             cell.midCell()
-        case "High":
+        case toDoScreenResources.highText:
             cell.highCell()
         default: break
         }
         return cell
     }
 }
+
+    // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ToDoScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -232,15 +248,17 @@ extension ToDoScreenViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+    // MARK: - UICollectionViewDelegate
+
 extension ToDoScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let cell = collectionView.cellForItem(at: indexPath) as? PriorityCollectionViewCell
         cell?.cellSelected()
         switch indexPath.row {
-        case 0: presenter.priorityEdited(priority: "Low")
-        case 1: presenter.priorityEdited(priority: "Mid")
-        case 2: presenter.priorityEdited(priority: "High")
+        case 0: presenter.priorityEdited(priority: toDoScreenResources.lowText)
+        case 1: presenter.priorityEdited(priority: toDoScreenResources.midText)
+        case 2: presenter.priorityEdited(priority: toDoScreenResources.highText)
         default: break
         }
     }
@@ -251,9 +269,11 @@ extension ToDoScreenViewController: UICollectionViewDelegate {
     }
 }
 
+    // MARK: - ToDoScreenViewControllerProtocol
+
 extension ToDoScreenViewController: ToDoScreenViewControllerProtocol {
     func setupWithToDo(toDo: ToDo) {
-        createButton.setTitle("Сохранить", for: .normal)
+        createButton.setTitle(toDoScreenResources.saveText, for: .normal)
         nameTextView.text = toDo.name
         presenter.nameEdited(name: nameTextView.text)
         if let description = toDo.descriptioin {
@@ -266,9 +286,9 @@ extension ToDoScreenViewController: ToDoScreenViewControllerProtocol {
         }
         if let priority = toDo.priority {
             switch priority {
-            case "Low": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
-            case "Mid": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 1, section: 0))
-            case "High": collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 2, section: 0))
+            case toDoScreenResources.lowText: collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+            case toDoScreenResources.midText: collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 1, section: 0))
+            case toDoScreenResources.highText: collectionView(priorityCollectionView, didSelectItemAt: IndexPath(item: 2, section: 0))
             default: break
             }
             presenter.priorityEdited(priority: priority)
@@ -280,11 +300,11 @@ extension ToDoScreenViewController: ToDoScreenViewControllerProtocol {
     
     func showAlert() {
         let alertController = UIAlertController(
-            title: "Не получилось создать задачу",
-            message: "Убедитесь что все поля заполнены",
+            title: toDoScreenResources.alertTitleText,
+            message: toDoScreenResources.alertMessageText,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "ОК", style: .default) { _ in
+        let okAction = UIAlertAction(title: toDoScreenResources.okText, style: .default) { _ in
             alertController.dismiss(animated: true)
         }
         alertController.addAction(okAction)

@@ -11,8 +11,8 @@ final class MainScreenModuleViewController: UIViewController {
     private lazy var toDoListTableView: UITableView = {
         var toDoListTableView = UITableView()
         toDoListTableView.showsVerticalScrollIndicator = false
-        toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: "ToDoListTableViewCell")
-        toDoListTableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
+        toDoListTableView.register(ToDoListTableViewCell.self, forCellReuseIdentifier: mainResources.toDoListCellReuseIdentifierText)
+        toDoListTableView.register(HeaderView.self, forHeaderFooterViewReuseIdentifier: mainResources.headerReuseIdentifier)
         toDoListTableView.separatorStyle = .none
         toDoListTableView.estimatedRowHeight = 100
         return toDoListTableView
@@ -20,7 +20,7 @@ final class MainScreenModuleViewController: UIViewController {
 
     private lazy var toDoLabel: UILabel = {
         var toDoLabel = UILabel()
-        toDoLabel.text = Resources.MainScreenModule.todoText
+        toDoLabel.text = mainResources.todoText
         toDoLabel.textColor = .black
         toDoLabel.font = .mainScreenTitileFont
         return toDoLabel
@@ -28,7 +28,7 @@ final class MainScreenModuleViewController: UIViewController {
 
     private lazy var addButton: UIButton = {
         var addButton = UIButton()
-        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addButton.setImage(UIImage.plusImage, for: .normal)
         addButton.tintColor = .black
         addButton.backgroundColor = .white
         addButton.layer.masksToBounds = false
@@ -54,7 +54,7 @@ final class MainScreenModuleViewController: UIViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Resources.fatalErrorText)
     }
 
     // MARK: - Lifecycle
@@ -102,17 +102,22 @@ final class MainScreenModuleViewController: UIViewController {
             toDoListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    // MARK: - Objc methods
     
     @objc private func addButtonTapped() {
         presenter.addButtonTapped(toDo: nil)
     }
 }
 
+    // MARK: - MainScreenModuleViewControllerProtocol
+
 extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol {
     func reloadData() {
         toDoListTableView.reloadData()
     }
 }
+
+    // MARK: - MainScreenModuleViewControllerCellProtocol
 
 extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProtocol {
     func doneButtonTapped(toDo: ToDo, indexPath: IndexPath) {
@@ -137,6 +142,8 @@ extension MainScreenModuleViewController: MainScreenModuleViewControllerCellProt
     }
 }
 
+    // MARK: - UITableViewDelegate
+
 extension MainScreenModuleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? ToDoListTableViewCell
@@ -145,25 +152,27 @@ extension MainScreenModuleViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? HeaderView else { return UIView()}
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: mainResources.headerReuseIdentifier) as? HeaderView else { return UIView()}
         switch section {
         case 0:
             let count = presenter.getUncompletedToDos().count
             if count == 0 {
                 return UIView()
             }
-            header.configureLabel(text: "Невыполненные (\(count))")
+            header.configureLabel(text: "\(mainResources.completedHeaderText) (\(count))")
         case 1:
             let count = presenter.getCompletedToDos().count
             if count == 0 {
                 return UIView()
             }
-            header.configureLabel(text: "Выполненные (\(count))")
+            header.configureLabel(text: "\(mainResources.uncompletedHeaderText) (\(count))")
         default: return UIView()
         }
         return header
     }
 }
+
+    // MARK: - UITableViewDataSource
 
 extension MainScreenModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -186,7 +195,7 @@ extension MainScreenModuleViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let toDos = presenter.getUncompletedToDos()
-            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: mainResources.toDoListCellReuseIdentifierText, for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
             cell.view = self
             let toDo = toDos[indexPath.row]
             cell.toDo = toDo
@@ -195,7 +204,7 @@ extension MainScreenModuleViewController: UITableViewDataSource {
             return cell
         case 1:
             let toDos = presenter.getCompletedToDos()
-            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "ToDoListTableViewCell", for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
+            guard let cell = toDoListTableView.dequeueReusableCell(withIdentifier: mainResources.toDoListCellReuseIdentifierText, for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
             cell.view = self
             let toDo = toDos[indexPath.row]
             cell.toDo = toDo

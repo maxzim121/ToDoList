@@ -1,9 +1,13 @@
 import UIKit
 final class ToDoListTableViewCell: UITableViewCell {
     
+    // MARK: - Public properties
+    
     weak var view: MainScreenModuleViewControllerCellProtocol?
     var toDo: ToDo?
     var indexPath: IndexPath?
+    
+    // MARK: - Private properties
     
     private var stackView: UIStackView = {
         var stackView = UIStackView()
@@ -13,7 +17,7 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     private var descriptionLabel: UILabel = {
         var descriptionLabel = UILabel()
-        descriptionLabel.font = .systemFont(ofSize: 14)
+        descriptionLabel.font = .descriptionFont
         descriptionLabel.textColor = .lightGray
         descriptionLabel.numberOfLines = 2
         return descriptionLabel
@@ -30,7 +34,7 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     private lazy var toDoNameLabel: UILabel = {
         var toDoNameLabel = UILabel()
-        toDoNameLabel.font = .systemFont(ofSize: 16)
+        toDoNameLabel.font = .toDoNameFont
         toDoNameLabel.numberOfLines = 2
         return toDoNameLabel
     }()
@@ -46,10 +50,12 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         var dateLabel = UILabel()
-        dateLabel.font = .systemFont(ofSize: 14)
+        dateLabel.font = .descriptionFont
         dateLabel.backgroundColor = .clear
         return dateLabel
     }()
+    
+    // MARK: - Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -64,6 +70,8 @@ final class ToDoListTableViewCell: UITableViewCell {
         stackView.spacing = 0
     }
     
+    // MARK: - Initializers
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
@@ -71,9 +79,10 @@ final class ToDoListTableViewCell: UITableViewCell {
     
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Resources.fatalErrorText)
     }
     
+    // MARK: - Private methods
     
     private func setupConstraints() {
         [statusButton, dateBackgroundView, stackView].forEach {
@@ -95,20 +104,22 @@ final class ToDoListTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(toDoNameLabel)
     }
     
-    @objc func doneButtonTapped() {
+    // MARK: - Objc methods
+    
+    @objc private func doneButtonTapped() {
         UIView.transition(
             with: statusButton,
             duration: 0.2,
             options: .transitionCrossDissolve,
             animations: { [self] in 
-                self.statusButton.image = UIImage(systemName: "checkmark")
+                self.statusButton.image = .checkmarkImage
                 guard let toDo = self.toDo,
                       let indexPath = self.indexPath else { return }
                 view?.doneButtonTapped(toDo: toDo, indexPath: indexPath)
                 })
     }
     
-    
+    // MARK: - Public methods
     
     func configureUI(name: String?, description: String?, date: Date?, priority: String?, status: Bool?) {
         var descriptionIsNil: Bool = true
@@ -127,11 +138,11 @@ final class ToDoListTableViewCell: UITableViewCell {
         }
         if let priority = priority {
             switch priority {
-            case "Low":
+            case mainResources.lowText:
                 statusButton.tintColor = .blue.withAlphaComponent(0.5)
-            case "Mid":
+            case mainResources.midText:
                 statusButton.tintColor = .yellow.withAlphaComponent(0.8)
-            case "High":
+            case mainResources.highText:
                 statusButton.tintColor = .red.withAlphaComponent(0.5)
             default: break
             }
@@ -139,11 +150,10 @@ final class ToDoListTableViewCell: UITableViewCell {
             statusButton.tintColor = .lightGray
         }
         if let status = status {
-            guard let name = name else { return }
             if status == true {
-                statusButton.image = UIImage(systemName: "checkmark")
+                statusButton.image = .checkmarkImage
             } else {
-                statusButton.image = UIImage(systemName: "circle")
+                statusButton.image = .circleImage
             }
         }
     }

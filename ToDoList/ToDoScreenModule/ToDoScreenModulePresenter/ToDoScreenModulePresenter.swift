@@ -1,23 +1,29 @@
 import Foundation
 final class ToDoScreenModulePresenter {
     
+    // MARK: - Public properties
+    
     weak var view: ToDoScreenViewControllerProtocol?
     var intrecator: ToDoScreenModuleIntrecatorProtocol
     var router: ToDoScreenModuleRouterProtocol
-    
     var toDo: ToDo?
+    
+    // MARK: - Private properties
     
     private var nameText: String?
     private var descriptionText: String?
     private var priorityText: String?
     private var date: Date?
     
+    // MARK: - Initializers
+    
     init(intrecator: ToDoScreenModuleIntrecatorProtocol, router: ToDoScreenModuleRouterProtocol) {
         self.intrecator = intrecator
         self.router = router
     }
-    
 }
+
+    // MARK: - ToDoScreenModulePresenterProtocol
 
 extension ToDoScreenModulePresenter: ToDoScreenModulePresenterProtocol {
     func tryToCreate() {

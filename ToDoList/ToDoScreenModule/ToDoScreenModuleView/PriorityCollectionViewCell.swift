@@ -1,12 +1,16 @@
 import UIKit
 final class PriorityCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Components
+    
     private lazy var priorityLabel: UILabel = {
         var priorityLabel = UILabel()
-        priorityLabel.font = .systemFont(ofSize: 16)
+        priorityLabel.font = .toDoNameFont
         priorityLabel.textColor = .black
         return priorityLabel
     }()
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -15,8 +19,10 @@ final class PriorityCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Resources.fatalErrorText)
     }
+    
+    // MARK: - Private methods
     
     private func setupConstraints() {
         contentView.addSubview(priorityLabel)
@@ -25,6 +31,8 @@ final class PriorityCollectionViewCell: UICollectionViewCell {
         priorityLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         priorityLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
+    
+    // MARK: - Public methods
     
     func cellSelected() {
         contentView.layer.borderWidth = 3
@@ -36,15 +44,15 @@ final class PriorityCollectionViewCell: UICollectionViewCell {
     
     func lowCell() {
         contentView.backgroundColor = .blue.withAlphaComponent(0.5)
-        priorityLabel.text = "Low"
+        priorityLabel.text = toDoScreenResources.lowText
     }
     func midCell() {
         contentView.backgroundColor = .yellow.withAlphaComponent(0.5)
-        priorityLabel.text = "Mid"
+        priorityLabel.text = toDoScreenResources.midText
     }
     func highCell() {
         contentView.backgroundColor = .red.withAlphaComponent(0.5)
-        priorityLabel.text = "High"
+        priorityLabel.text = toDoScreenResources.highText
     }
     
 }

@@ -1,8 +1,17 @@
 import Foundation
 final class ToDoScreenModuleIntrecator {
+    
+    // MARK: - Public properties
+    
     weak var presenter: ToDoScreenModulePresenterProtocol?
-    let coreDataOperator = CoreDataOperator.shared
+    
+    // MARK: - Private properties
+    
+    private let coreDataOperator = CoreDataOperator.shared
 }
+
+    // MARK: - ToDoScreenModuleIntrecatorProtocol
+
 extension ToDoScreenModuleIntrecator: ToDoScreenModuleIntrecatorProtocol {
     func createNewToDo(name: String, description: String, date: Date, priority: String) {
         DispatchQueue.global().sync {

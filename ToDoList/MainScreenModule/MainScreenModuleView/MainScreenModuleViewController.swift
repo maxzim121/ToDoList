@@ -8,6 +8,20 @@ final class MainScreenModuleViewController: UIViewController {
 
     // MARK: - UI components
     
+    private lazy var plugImageView: UIImageView = {
+        var plugImageView = UIImageView(image: .sad)
+        plugImageView.contentMode = .scaleToFill
+        return plugImageView
+    }()
+    
+    private lazy var plugLabel: UILabel = {
+        var plugLabel = UILabel()
+        plugLabel.text = mainResources.noToDosText
+        plugLabel.textColor = .lightGray
+        plugLabel.font = .plugFont
+        return plugLabel
+    }()
+    
     private lazy var toDoListTableView: UITableView = {
         var toDoListTableView = UITableView()
         toDoListTableView.showsVerticalScrollIndicator = false
@@ -66,7 +80,6 @@ final class MainScreenModuleViewController: UIViewController {
         presenter.viewDidLoad()
         toDoListTableView.delegate = self
         toDoListTableView.dataSource = self
-        reloadData()
         view.backgroundColor = .white
     }
     
@@ -77,12 +90,20 @@ final class MainScreenModuleViewController: UIViewController {
     // MARK: - Private methods
 
     private func setupConstraints() {
-        [toDoListTableView, bottomView, addButton, toDoLabel].forEach {
+        [toDoListTableView, bottomView, addButton, toDoLabel, plugImageView, plugLabel].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
+            plugImageView.widthAnchor.constraint(equalToConstant: 80),
+            plugImageView.heightAnchor.constraint(equalToConstant: 80),
+            plugImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            plugImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            plugLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            plugLabel.topAnchor.constraint(equalTo: plugImageView.bottomAnchor),
+            
             bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -112,7 +133,15 @@ final class MainScreenModuleViewController: UIViewController {
     // MARK: - MainScreenModuleViewControllerProtocol
 
 extension MainScreenModuleViewController: MainScreenModuleViewControllerProtocol {
-    func reloadData() {
+    
+    func reloadData(isEmpty: Bool) {
+        if isEmpty {
+            plugLabel.isHidden = false
+            plugImageView.isHidden = false
+        } else {
+            plugLabel.isHidden = true
+            plugImageView.isHidden = true
+        }
         toDoListTableView.reloadData()
     }
 }

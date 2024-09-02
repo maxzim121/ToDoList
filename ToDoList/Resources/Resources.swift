@@ -5,6 +5,8 @@ enum Resources {
         static let todoText = "ToDo"
         static let completedHeaderText = "Невыполненные"
         static let uncompletedHeaderText = "Выполненные"
+        static let downliadingToDosText = "Загружаем задачи..."
+        static let noToDosText = "Нет задач"
         static let lowText = "Low"
         static let midText = "Mid"
         static let highText = "High"

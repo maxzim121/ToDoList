@@ -1,4 +1,4 @@
 import Foundation
 protocol MainScreenModuleViewControllerProtocol: AnyObject {
-    func reloadData()
+    func reloadData(isEmpty: Bool)
 }

@@ -40,7 +40,6 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
     func addButtonTapped(toDo: ToDo?) {
         router.switchToToDoScreenModule(toDo: toDo)
     }
-    
 
     func viewDidLoad() {
         checkIfFirstLaunch()
@@ -54,7 +53,7 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
         if let index = toDos.firstIndex(of: toDo) {
             toDos[index].status = true
         }
-        view?.reloadData()
+        view?.reloadData(isEmpty: toDos.isEmpty)
     }
     
     func getCompletedToDos() -> [ToDo] {
@@ -65,7 +64,7 @@ extension MainScreenModulePresenter: MainScreenModulePresenterProtocol {
         toDos = intrecator.getAllToDos()
         completedToDos = toDos.filter() { $0.status == true }
         uncompletedToDos = toDos.filter() { $0.status == false }
-        view?.reloadData()
+        view?.reloadData(isEmpty: toDos.isEmpty)
     }
     
     func updateToDoStatus(toDo: ToDo, status: Bool) {
